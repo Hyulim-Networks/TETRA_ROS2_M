@@ -1,4 +1,4 @@
-# TETRA-DS5_ROS2-jazzy
+# TETRA-DS5_ROS2-jazzy 관제 연동 버전
 ros2-jazzy version package
 
 사용되는 센서:
@@ -11,4 +11,4 @@ ros2-jazzy version package
   
 
 
-아직 업데이트 중입니다...
+업데이트 중
