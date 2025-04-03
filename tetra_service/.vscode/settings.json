@@ -1,0 +1,16 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/tetra/ros2_ws/install/virtual_wall/lib/python3.12/site-packages",
+        "/home/tetra/ros2_ws/install/sick_scan_xd/lib/python3.12/site-packages",
+        "/home/tetra/ros2_ws/install/realsense2_camera_msgs/lib/python3.12/site-packages",
+        "/home/tetra/ros2_ws/install/interfaces/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/tetra/ros2_ws/install/virtual_wall/lib/python3.12/site-packages",
+        "/home/tetra/ros2_ws/install/sick_scan_xd/lib/python3.12/site-packages",
+        "/home/tetra/ros2_ws/install/realsense2_camera_msgs/lib/python3.12/site-packages",
+        "/home/tetra/ros2_ws/install/interfaces/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ]
+}

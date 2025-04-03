@@ -1,0 +1,22 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/tetra/ros2_ws/install/sick_scan_xd/local/lib/python3.10/dist-packages",
+        "/home/tetra/ros2_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages",
+        "/home/tetra/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages",
+        "/home/tetra/ros2_ws/install/costmap_converter_msgs/local/lib/python3.10/dist-packages",
+        "/home/tetra/ros2_ws/install/cartographer_ros_msgs/local/lib/python3.10/dist-packages",
+        "/home/tetra/ros2_ws/install/aruco_msgs/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/tetra/ros2_ws/install/sick_scan_xd/local/lib/python3.10/dist-packages",
+        "/home/tetra/ros2_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages",
+        "/home/tetra/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages",
+        "/home/tetra/ros2_ws/install/costmap_converter_msgs/local/lib/python3.10/dist-packages",
+        "/home/tetra/ros2_ws/install/cartographer_ros_msgs/local/lib/python3.10/dist-packages",
+        "/home/tetra/ros2_ws/install/aruco_msgs/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
