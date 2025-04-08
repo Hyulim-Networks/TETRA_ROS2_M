@@ -2043,7 +2043,7 @@ public:
 			case rclcpp_action::ResultCode::CANCELED:
 				RCLCPP_ERROR(get_logger(), "NavigateToPose: Goal was canceled");
 				_pRobot.m_iMovebase_Result = 1;
-				movebase.data = 3;
+				movebase.data = 1;
 				movebase_publisher->publish(movebase);
 				//LED Toggle Call
 				LedToggleControl_Call(1,10,100,10,1);
