@@ -77,7 +77,7 @@ configurable_parameters = [{'name': 'camera_name',                  'default': '
                            {'name': 'colorizer.enable',             'default': 'false', 'description': 'enable colorizer filter'},
                            {'name': 'decimation_filter.enable',     'default': 'false', 'description': 'enable_decimation_filter'},
                            {'name': 'spatial_filter.enable',        'default': 'false', 'description': 'enable_spatial_filter'},
-                           {'name': 'temporal_filter.enable',       'default': 'false', 'description': 'enable_temporal_filter'},
+                           {'name': 'temporal_filter.enable',       'default': 'true', 'description': 'enable_temporal_filter'},
                            {'name': 'disparity_filter.enable',      'default': 'false', 'description': 'enable_disparity_filter'},
                            {'name': 'hole_filling_filter.enable',   'default': 'false', 'description': 'enable_hole_filling_filter'},
                            {'name': 'hdr_merge.enable',             'default': 'false', 'description': 'hdr_merge filter enablement flag'},
