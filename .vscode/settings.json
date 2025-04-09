@@ -10,7 +10,8 @@
         "string": "cpp",
         "string_view": "cpp",
         "span": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "cmath": "cpp"
     },
     "cmake.sourceDirectory": "/home/tetra/ros2_ws/src/apriltag_ros2"
 }

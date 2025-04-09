@@ -1937,9 +1937,34 @@ public:
 		LedToggleControl_Call(1,3,100,3,1);
 		ToggleOn_Call(63); //White led
 
-		//Nav Goal call///////////////////////////////////////////////////////
-		Set_goal(request->pose_x, request->pose_y, request->pose_z,
+
+		_pGoal_pose.goal_positionX = request->pose_x;
+		_pGoal_pose.goal_positionY = request->pose_y;
+		_pGoal_pose.goal_quarterX = request->pose_qx;
+		_pGoal_pose.goal_quarterY = request->pose_qy;
+		_pGoal_pose.goal_quarterZ = request->pose_qz;
+		_pGoal_pose.goal_quarterW = request->pose_qw;
+
+
+		//Check robot status : noaml or docking?
+		if(_pRobot.m_iCallback_Charging_status <= 1 && (_pAR_tag_pose.m_iApril_tag_id == -1 || _pAR_tag_pose.m_transform_pose_x <= 0.5)) //Nomal
+    	{
+			RCLCPP_INFO(get_logger(), "Goto Nomal Loop !!");
+
+			//Nav Goal call///////////////////////////////////////////////////////
+			Set_goal(request->pose_x, request->pose_y, request->pose_z,
 				request->pose_qx, request->pose_qy, request->pose_qz, request->pose_qw);
+
+			bResult = true;
+		}
+		else
+		{
+			m_iDocking_CommandMode = 10; //Depart Move
+        	bResult = true;
+
+		}
+
+		//Nav Goal call///////////////////////////////////////////////////////
 
 		/*
 		float64 pose_x
@@ -1956,6 +1981,7 @@ public:
 		response->command_result = bResult;
 		return true;
 	}
+	
 	//Goto_Cancel_Command
 	bool Goto_Cancel_Command(
 		const std::shared_ptr<interfaces::srv::GotoCancel::Request> request, 
