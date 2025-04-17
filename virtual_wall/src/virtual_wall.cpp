@@ -209,8 +209,11 @@ public:
 						for (const auto& point32 : polygon.points) 
 						{
 							geometry_msgs::msg::Point point;
-							point.x = point32.x - m_dTF_calc_poseX;
-							point.y = point32.y - m_dTF_calc_poseY;
+							//point.x = ((point32.x* cos(m_dTF_calc_theta))+(point32.y* sin(m_dTF_calc_theta))) - m_dTF_calc_poseX;
+							//point.y = ((point32.x* -sin(m_dTF_calc_theta))+(point32.y* cos(m_dTF_calc_theta))) - m_dTF_calc_poseY;
+							
+							point.x = point32.x;
+							point.y = point32.y;
 							point.z = point32.z;
 							points.push_back(point);
 						}
@@ -358,7 +361,7 @@ public:
 	sensor_msgs::msg::PointCloud2 createPointCloud2(const std::vector<geometry_msgs::msg::Point>& dense_points) 
 	{
 		sensor_msgs::msg::PointCloud2 cloud_msg2;
-		cloud_msg2.header.frame_id = "odom"; // Ensure this matches the global frame
+		cloud_msg2.header.frame_id = "map"; // Ensure this matches the global frame
 		cloud_msg2.header.stamp = rclcpp::Clock().now();
 
 		cloud_msg2.height = 1;
