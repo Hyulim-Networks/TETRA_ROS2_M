@@ -11,7 +11,8 @@
         "string_view": "cpp",
         "span": "cpp",
         "functional": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "memory": "cpp"
     },
     "cmake.sourceDirectory": "/home/tetra/ros2_ws/src/apriltag_ros2"
 }
