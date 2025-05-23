@@ -93,6 +93,8 @@ def generate_launch_description():
         package='tetra_service', 
         executable='tetra_service',
         output='screen',
+        respawn=True,
+        respawn_delay=0.5,
         parameters=[
             {"m_dHome_ID": 0}
         ]
