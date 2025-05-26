@@ -2195,9 +2195,16 @@ int main(int argc, char * argv[])
 	setvbuf(stdout, NULL, _IONBF, BUFSIZ);
 	auto node = std::make_shared<TETRA_SERVICE>();
 
+	rclcpp::executors::MultiThreadedExecutor executor;
+	executor.add_node(node);
+
+	std::thread spin_thread([&executor]() {
+		executor.spin();
+	});
+
 	//init
 	node->current_time = node->now();
-	rclcpp::WallRate loop_rate(30);
+	//rclcpp::WallRate loop_rate(30);
 
 	//LED On
 	node->LedToggleControl_Call(1,3,100,3,1);
@@ -2214,10 +2221,11 @@ int main(int argc, char * argv[])
 	printf("□■□□□□■□□■□□□□□□□■□□□□■□□□□□■□□□□■□□□■□□□□■□□■□□□□□□\n");
 	printf("□□■■■■□□□■■■■■■□□■□□□□■□□□□□■□□□□■□□□□■■■■□□□■■■■■■□\n");
 	/////////////////////////////////////////////////////////////////   
+	//rclcpp::spin(node);
 
 	while (rclcpp::ok() && !stop_requested)
 	{
-		rclcpp::spin_some(node);
+		//rclcpp::spin_some(node);
 		
 		//Pose & IMU & costmap Reset Loop///////////
 		if(m_bActive_map)
@@ -2243,8 +2251,14 @@ int main(int argc, char * argv[])
 				}
 			}
 		}
-		loop_rate.sleep();
+
+		//loop_rate.sleep();
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+
+	//add...
+	executor.cancel();
+	spin_thread.join();
 
 	rclcpp::shutdown();
     return 0;
