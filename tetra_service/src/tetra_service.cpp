@@ -2188,6 +2188,7 @@ public:
 				//LED Toggle Call
 				LedToggleControl_Call(1,10,100,10,1);
 				ToggleOn_Call(18); //Red led
+				sleep(1);
 				
 				//retry set goal loop//========================================================================================
 				if(ex_iRetry_count < ex_iRetry_Max_count)
@@ -2209,7 +2210,8 @@ public:
 				}
 				//=============================================================================================================
 				break;
-			case rclcpp_action::ResultCode::CANCELED:				RCLCPP_ERROR(get_logger(), "NavigateToPose: Goal was canceled");
+			case rclcpp_action::ResultCode::CANCELED:				
+				RCLCPP_ERROR(get_logger(), "NavigateToPose: Goal was canceled");
 				_pRobot.m_iMovebase_Result = 1;
 				movebase.data = 1;
 				movebase_publisher->publish(movebase);

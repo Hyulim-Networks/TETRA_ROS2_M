@@ -78,7 +78,7 @@ constexpr int BUMPER_BACK_MASK = 0x08;
 
 bool IsServoEnabled(int data)
 {
-	return (data & SERVO_MASK) != 0;
+	return (data & SERVO_MASK) == 0;
 }
 
 bool IsFrontBumperActive(int data)

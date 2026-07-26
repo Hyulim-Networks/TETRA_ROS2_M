@@ -147,6 +147,8 @@ public:
 		{
 			m_bActive_map = true;
 			printf(" Active_map ! \n");
+			polygon_global_costmap.clear();
+			polygon_local_costmap.clear();
 		}
 		else
 		{
@@ -200,6 +202,7 @@ public:
 				else
 				{
 					// Handle addition
+					polygon_local_costmap.clear();
 					for (size_t i = 0; i < _pVirtual_polygon.iPolygon_size; ++i) 
 					{
 						const auto& polygon = _pVirtual_polygon.polygons[i];
@@ -237,17 +240,16 @@ public:
 					polygon_local_costmap.clear();
 					combined_cloud2 = sensor_msgs::msg::PointCloud2();
 					combined_cloud2.data.clear();
-					combined_cloud2.header.frame_id = "odom";  
+					combined_cloud2.fields.clear();
+					combined_cloud2.header.frame_id = "map";  // "odom"
 					combined_cloud2.header.stamp = this->now();
 
 					ensurePointCloudFields(combined_cloud2);
 					local_virtual_obstacles_publisher->publish(combined_cloud2);
-					_pVirtual_polygon.noEmpty = false;
 				}
 				else
 				{
 					local_virtual_obstacles_publisher->publish(combined_cloud2);
-					_pVirtual_polygon.noEmpty = true;
 				}
 			} 
 			catch (tf2::TransformException &ex) 
@@ -361,7 +363,7 @@ public:
 	sensor_msgs::msg::PointCloud2 createPointCloud2(const std::vector<geometry_msgs::msg::Point>& dense_points) 
 	{
 		sensor_msgs::msg::PointCloud2 cloud_msg2;
-		cloud_msg2.header.frame_id = "map"; // Ensure this matches the global frame
+		cloud_msg2.header.frame_id = "map"; // "odom" Ensure this matches the local frame
 		cloud_msg2.header.stamp = rclcpp::Clock().now();
 
 		cloud_msg2.height = 1;
@@ -421,7 +423,6 @@ public:
 	// Ensure PointCloud2 has valid fields -> empty case
 	void ensurePointCloudFields(sensor_msgs::msg::PointCloud2 &cloud)
 	{
-		cloud.fields.clear();
 		sensor_msgs::msg::PointField field_x;
 		field_x.name = "x";
 		field_x.offset = 0;
@@ -477,12 +478,13 @@ public:
 		} 
 		else 
 		{
-			//Virtual Local_costamp_value set...
+			//Virtual Global_costamp_value set...
+			polygon_global_costmap.clear();
 			_pVirtual_polygon.iPolygon_size = request->polygons.size();
 			// Handle addition
 			for (size_t i = 0; i < request->polygons.size(); ++i) 
 			{
-				//Virtual Local_costamp_value set...
+				//Virtual Global_costamp_value set...
 				_pVirtual_polygon.polygons[i] = request->polygons[i];
 				_pVirtual_polygon.iID[i] = request->ids[i];
 				const auto& polygon = request->polygons[i];
@@ -518,11 +520,13 @@ public:
 			polygon_global_costmap.clear();
 			combined_cloud = sensor_msgs::msg::PointCloud2();
 			combined_cloud.data.clear();
+			combined_cloud.fields.clear();
 			combined_cloud.header.frame_id = "map";  
 			combined_cloud.header.stamp = this->now();
 
 			ensurePointCloudFields(combined_cloud);
 			global_virtual_obstacles_publisher->publish(combined_cloud);
+			_pVirtual_polygon.noEmpty = false;
 		}
 		else
 		{

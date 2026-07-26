@@ -172,6 +172,12 @@ def generate_launch_description():
 		PythonLaunchDescriptionSource(
 			[get_package_share_directory('realsense2_camera'), '/launch/rs_launch.py']), # rs_multi_camera_launch.py
 		),
+
+        # virtual_wall
+        IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            [get_package_share_directory('virtual_wall'), '/launch/virtual_wall.launch.py']),
+        ),
         
         ]
     )

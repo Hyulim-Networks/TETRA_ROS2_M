@@ -91,6 +91,6 @@ def generate_launch_description():
     launchDescriptionObject.add_action(sim_time_arg)
     launchDescriptionObject.add_action(localization_launch)
     launchDescriptionObject.add_action(navigation_launch)
-    launchDescriptionObject.add_action(virtual_wall_launch)
+    #launchDescriptionObject.add_action(virtual_wall_launch)
 
     return launchDescriptionObject
